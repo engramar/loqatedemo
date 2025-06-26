@@ -2,324 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Address Lookup</title>
-    <style>
-        body {
-            font-family: 'Aptos', sans-serif;
-        }
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-            border-bottom: none;
-        }
-        .tab.active {
-            background-color: #f0f0f0;
-            border-bottom: 1px solid white;
-        }
-        .tab-content {
-            display: none;
-            border: 1px solid #ccc;
-            padding: 20px;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .output-container {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .output-box {
-            padding: 10px;
-            border: 1px solid #ccc;
-            width: 45%;
-            height: 150px;
-            overflow-y: auto;
-            font-size: 16px;
-        }
-        .output-header {
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-        .details-box {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            width: 100%;
-            font-size: 16px;
-        }
-        .details-header {
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-        .split-container {
-            display: flex;
-            justify-content: space-between;
-        }
-        .split-box {
-            width: 48%;
-            border: 1px solid #ccc;
-            padding: 10px;
-            font-size: 16px;
-            height: 150px;
-            overflow-y: auto;
-        }
-        .split-header {
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-        .address-item {
-            cursor: pointer;
-            padding: 5px;
-        }
-        .address-item:hover {
-            background-color: #d3d3d3;
-        }
- 
-        .modal {
-            display: flex;
-            position: fixed;
-            z-index: 999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            width: 300px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .modal-content input {
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 8px;
-        }
-
-    </style>
+    <title>DataTables Demo</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
 
-    <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <h2>Login</h2>
-        <label for="username">Username:</label>
-        <input type="text" id="username" />
-        <label for="password">Password:</label>
-        <input type="password" id="password" />
-        <button id="loginButton">Login</button>
-      </div>
-    </div>
 
-    
-    <div class="tabs">
-        <div class="tab active" data-tab="australia">Australia</div>
-        <div class="tab" data-tab="new-zealand">New Zealand</div>
-    </div>
+<!-- Header with Logo -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="static/img/Loqate-logo-primary.svg" alt="Logo" class="me-2">
+            <span class="fs-4"></span>
+        </a>
+    </div>
+</nav>
 
-    <div id="australia" class="tab-content active">
-        <h1>Loqate Australia (HRA) Address Lookup</h1>
-        <input type="text" id="address-input" placeholder="Start typing an address..." autocomplete="off">
-        <div class="split-container">
-            <div class="split-box">
-                <div class="split-header"><a href="https://data.gov.au/data/dataset/geocoded-national-address-file-g-naf" target="_blank">PSMA's G-NAF (Geocoded National Address File)</a></div>
-                <div id="output1" class="output-content"></div>
-            </div>
-            <div class="split-box">
-                <div class="split-header"><a href="https://auspost.com.au/content/dam/auspost_corp/media/documents/australia-post-data-guide.pdf" target="_blank">Australia Post's AUPAF (Postal Address File)</a></div>
-                <div id="output2" class="output-content"></div>
-            </div>
-        </div>
-        <div class="details-box">
-            <div class="details-header">Find API Response</div>
-            <div id="address-details"></div>
-        </div>
-        <div class="details-box">
-            <div class="details-header">Retrieve API Response</div>
-            <div id="retrieve-details"></div>
-        </div>
-    </div>
+<div class="container mt-5">
+    <table id="demoTable" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Demo Name</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>All Australian Address Sources of Truth</td>
+                <td><a href="ausots.html" target="_blank">Link to Demo</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>All NZ Address Sources of Truth</td>
+                <td><a href="nzsots.html" target="_blank">Link to Demo</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-    <div id="new-zealand" class="tab-content">
-        <h1>Loqate New Zealand</h1>
-        <p>Redirecting to <a href="index2.html">New Zealand Address Lookup</a></p>
-    </div>
-
-    <script>
-        // Tab functionality
-        const tabs = document.querySelectorAll('.tab');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                if (tab.getAttribute('data-tab') === 'new-zealand') {
-                    window.location.href = 'index2.html';
-                } else {
-                    document.getElementById('australia').classList.add('active');
-                }
-            });
-        });
-
-        async function fetchAddressesFromLoqateHRA(query, sourceOfTruth) {
-            const url = 'https://hosted.mastersoftgroup.com/harmony/rest/v2/address/find';
-            const payload = {
-                "payload": [{ "country": "AU", "fullAddress": query }],
-                "sourceOfTruth": sourceOfTruth,
-                "featureOptions": { "exposeAttributes": "1", "singleLineHitNumber": "20"}
-            };
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': authHeader
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.payload.map(item => ({ fullAddress: item.fullAddress, details: item })) || [];
-                } else {
-                    console.error('Error fetching addresses from Loqate HRA:', response.status, response.statusText);
-                    return [];
-                }
-            } catch (error) {
-                console.error('Fetch error:', error);
-                return [];
-            }
-        }
-
-        async function fetchRetrieveDetailsHRA(id, sourceOfTruth) {
-            const url = 'https://hosted.mastersoftgroup.com/harmony/rest/v2/address/retrieve';
-            const payload = {
-                "payload": [{ "id": id }],
-                "featureOptions": { "exposeAttributes": "7", "displayGnafLot": "1", "suppressLot": "1" }
-            };
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': authHeader
-            };
-            
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Retrieve API response HRA:', data); // Log to check the response
-                    return data.payload || [];
-                } else {
-                    console.error('Error fetching retrieve details HRA:', response.status, response.statusText);
-                    return [];
-                }
-            } catch (error) {
-                console.error('Fetch error:', error);
-                return [];
-            }
-        }
-
-        function displayAddresses(query, outputId, sourceOfTruth) {
-            fetchAddressesFromLoqateHRA(query, sourceOfTruth)
-                .then(addresses => {
-                    const outputDiv = document.getElementById(outputId);
-                    outputDiv.innerHTML = '';
-
-                    if (addresses.length === 0) {
-                        outputDiv.style.display = 'none';
-                        return;
-                    }
-
-                    addresses.forEach(address => {
-                        const p = document.createElement('p');
-                        let addressText = address.fullAddress;
-
-                        // Check if the address type is "AddressIntlEx" and append 'ADX'
-                        if (address.details._type === "AddressIntlEx") {
-                            addressText += ' (ADX)';
-                        }
-
-                        p.textContent = addressText;
-                        p.className = 'address-item';
-                        p.addEventListener('click', async function() {
-                            displayAddressDetails(address.details);
-                            const retrieveDetails = await fetchRetrieveDetailsHRA(address.details.id, sourceOfTruth);
-                            displayRetrieveDetails(retrieveDetails);
-                        });
-                        outputDiv.appendChild(p);
-                    });
-
-                    outputDiv.style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error fetching addresses:', error);
-                });
-        }
-
-        function displayAddressDetails(details) {
-            const detailsDiv = document.getElementById('address-details');
-            detailsDiv.innerHTML = '<pre>' + JSON.stringify(details, null, 2) + '</pre>';
-        }
-
-        function displayRetrieveDetails(details) {
-            const detailsDiv = document.getElementById('retrieve-details');
-            detailsDiv.innerHTML = '<pre>' + JSON.stringify(details, null, 2) + '</pre>';
-        }
-
-        document.getElementById('address-input').addEventListener('input', function() {
-            const query = this.value.trim();
-            if (query.length > 2) {
-                displayAddresses(query, 'output1', 'GNAF');
-                displayAddresses(query, 'output2', 'AUPAF');
-            } else {
-                document.getElementById('output1').style.display = 'none';
-                document.getElementById('output2').style.display = 'none';
-            }
-        });
-
-
-        let authHeader = '';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('loginModal');
-            const loginButton = document.getElementById('loginButton');
-
-            loginButton.addEventListener('click', () => {
-                const username = document.getElementById('username').value.trim();
-                const password = document.getElementById('password').value.trim();
-
-                if (username && password) {
-                    authHeader = 'Basic ' + btoa(`${username}:${password}`);
-                    modal.style.display = 'none';
-                } else {
-                    alert('Please enter both username and password.');
-                }
-            });
-        });
-
-    </script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#demoTable').DataTable();
+    });
+</script>
 </body>
 </html>

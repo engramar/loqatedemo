@@ -38,7 +38,7 @@
         .output-box {
             padding: 10px;
             border: 1px solid #ccc;
-            width: 30%;
+            width: 45%;
             height: 150px;
             overflow-y: auto;
             font-size: 16px;
@@ -84,7 +84,7 @@
         .address-item:hover {
             background-color: #d3d3d3;
         }
-
+ 
         .modal {
             display: flex;
             position: fixed;
@@ -115,6 +115,7 @@
     </style>
 </head>
 <body>
+
     <div id="loginModal" class="modal">
       <div class="modal-content">
         <h2>Login</h2>
@@ -126,26 +127,23 @@
       </div>
     </div>
 
+    
     <div class="tabs">
-        <div class="tab" data-tab="australia">Australia</div>
-        <div class="tab active" data-tab="new-zealand">New Zealand</div>
+        <div class="tab active" data-tab="australia">Australia</div>
+        <div class="tab" data-tab="new-zealand">New Zealand</div>
     </div>
 
-    <div id="new-zealand" class="tab-content active">
-        <h1>Loqate New Zealand (HRA) Address Lookup</h1>
+    <div id="australia" class="tab-content active">
+        <h1>Loqate Australia (HRA) Address Lookup</h1>
         <input type="text" id="address-input" placeholder="Start typing an address..." autocomplete="off">
         <div class="split-container">
             <div class="split-box">
-                <div class="split-header"><a href="https://www.nzpost.co.nz/business/shipping-in-nz/quality-addressing/postal-address-file-paf" target="_blank">NZ Post's NZPAF (NZ Postal Address File)</a></div>
+                <div class="split-header"><a href="https://data.gov.au/data/dataset/geocoded-national-address-file-g-naf" target="_blank">PSMA's G-NAF (Geocoded National Address File)</a></div>
                 <div id="output1" class="output-content"></div>
             </div>
             <div class="split-box">
-                <div class="split-header"><a href="https://www.nzpost.co.nz/business/shipping-in-nz/quality-addressing/nz-address-dataset" target="_blank">NZ Post's NZAD (NZ Address Dataset)</a></div>
+                <div class="split-header"><a href="https://auspost.com.au/content/dam/auspost_corp/media/documents/australia-post-data-guide.pdf" target="_blank">Australia Post's AUPAF (Postal Address File)</a></div>
                 <div id="output2" class="output-content"></div>
-            </div>
-            <div class="split-box">
-                <div class="split-header"><a href="https://www.nationalmap.co.nz/cnar" target="_blank">NationalMap NZ's CNAR (Comprehensive National Address Register)</a></div>
-                <div id="output3" class="output-content"></div>
             </div>
         </div>
         <div class="details-box">
@@ -158,9 +156,9 @@
         </div>
     </div>
 
-    <div id="australia" class="tab-content">
-        <h1>Loqate Australia</h1>
-        <p>Redirecting to <a href="index.html">Australia Address Lookup</a></p>
+    <div id="new-zealand" class="tab-content">
+        <h1>Loqate New Zealand</h1>
+        <p>Redirecting to <a href="nzsots.html">New Zealand Address Lookup</a></p>
     </div>
 
     <script>
@@ -172,10 +170,10 @@
                 tabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
 
-                if (tab.getAttribute('data-tab') === 'australia') {
-                    window.location.href = 'index.html';
+                if (tab.getAttribute('data-tab') === 'new-zealand') {
+                    window.location.href = 'nzsots.html';
                 } else {
-                    document.getElementById('new-zealand').classList.add('active');
+                    document.getElementById('australia').classList.add('active');
                 }
             });
         });
@@ -183,9 +181,9 @@
         async function fetchAddressesFromLoqateHRA(query, sourceOfTruth) {
             const url = 'https://hosted.mastersoftgroup.com/harmony/rest/v2/address/find';
             const payload = {
-                "payload": [{ "country": "NZ", "fullAddress": query }],
+                "payload": [{ "country": "AU", "fullAddress": query }],
                 "sourceOfTruth": sourceOfTruth,
-                "featureOptions": { "exposeAttributes": "1", "singleLineHitNumber": "20", "displayGnafLot": "1", "suppressLot": "1" }
+                "featureOptions": { "exposeAttributes": "1", "singleLineHitNumber": "20"}
             };
             const headers = {
                 'Content-Type': 'application/json',
@@ -222,7 +220,7 @@
                 'Content-Type': 'application/json',
                 'Authorization': authHeader
             };
-
+            
             try {
                 const response = await fetch(url, {
                     method: 'POST',
@@ -294,13 +292,11 @@
         document.getElementById('address-input').addEventListener('input', function() {
             const query = this.value.trim();
             if (query.length > 2) {
-                displayAddresses(query, 'output1', 'NZPAF');
-                displayAddresses(query, 'output2', 'NZAD');
-                displayAddresses(query, 'output3', 'CNAR');
+                displayAddresses(query, 'output1', 'GNAF');
+                displayAddresses(query, 'output2', 'AUPAF');
             } else {
                 document.getElementById('output1').style.display = 'none';
                 document.getElementById('output2').style.display = 'none';
-                document.getElementById('output3').style.display = 'none';
             }
         });
 
