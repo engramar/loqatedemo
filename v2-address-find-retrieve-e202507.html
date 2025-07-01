@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Local Page</title>
+
+  <!-- Harmony CSS -->
+  <link rel="stylesheet" type="text/css" href="https://common.mastersoftgroup.com/scripts/harmony-2.1.0.min.css">
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+  <!-- Harmony JS -->
+  <script src="https://common.mastersoftgroup.com/scripts/harmony-2.1.0.min.js" type="text/javascript"></script>
+
+  <!-- Bootstrap 5 JS Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+
+
+<div class="container">
+  <!-- header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.loqate.com/content/images/loqate_logo_dark.svg" style="height: 50px">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <span class="navbar-text">
+            <h4>Address Find/Retrieve API Demo (JS)</h4>
+            <p>e202507</p>
+          </span>
+        </div>
+
+        <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sales Support Menu
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" target="_blank" href="https://www.loqate.com/anz/contact/">Contact Sales</a></li>
+              <li><a class="dropdown-item" target="_blank" href="https://docs.mastersoftgroup.com/loqate-harmony-api/api-specification/address/address-validation-and-lookup">API Documentation</a></li>
+              <li><a class="dropdown-item" target="_blank" href="https://www.loqate.com/anz/support/">Contact Support</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- main accordion -->
+  <div class="accordion" id="accordionExample">
+
+    <!-- settings item -->
+    <div class="accordion-item" id="settings">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+          Settings
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+
+          <div id="clear" style="display:none" class="alert alert-dark">
+            To change the existing options, please refresh/reload current page.
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-floating">
+                <select class="form-select address-opt" aria-label="Environment" id="env">
+                  <option value="https://hosted.mastersoftgroup.com">Production</option>
+                  <option value="https://preview.harmonyrightaddress.net">Preview</option>
+                  <option value="https://test.harmonyrightaddress.net">Test</option>
+                  <option value="https://dev.harmonyrightaddress.net">Dev</option>
+                </select>
+                <label for="env">Environment</label>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-floating">
+                <input type="text" class="form-control address-opt" id="apiUser" placeholder="API User">
+                <label for="apiUser">API User</label>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-floating">
+                <input type="password" class="form-control address-opt" id="password" placeholder="Password">
+                <label for="password">Password</label>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-floating">
+                <button class="btn btn-primary address-opt" name="start" id="start">Start</button>
+                <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Options
+                </button>
+
+              </div>
+            </div>
+
+          </div>
+
+          <p />
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div id="countryDiv" class="form-floating">
+                    <select id="country" name="country" class="form-select address-opt">
+                      <option value="AU">Australia</option>
+                      <option value="NZ">New Zealand</option>
+                      <option value="GB">United Kingdom</option>
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+
+                      <option value="AF">Afghanistan</option>
+                      <option value="AX">Åland</option>
+                      <option value="AL">Albania</option>
+                      <option value="DZ">Algeria</option>
+                      <option value="AS">American Samoa</option>
+                      <option value="AD">Andorra</option>
+                      <option value="AO">Angola</option>
+                      <option value="AI">Anguilla</option>
+                      <option value="AG">Antigua and Barbuda</option>
+                      <option value="AR">Argentina</option>
+                      <option value="AM">Armenia</option>
+                      <option value="AW">Aruba</option>
+                      <option value="AT">Austria</option>
+                      <option value="AZ">Azerbaijan</option>
+                      <option value="BS">Bahamas</option>
+                      <option value="BH">Bahrain</option>
+                      <option value="BD">Bangladesh</option>
+                      <option value="BB">Barbados</option>
+                      <option value="BY">Belarus</option>
+                      <option value="BE">Belgium</option>
+                      <option value="BZ">Belize</option>
+                      <option value="BJ">Benin</option>
+                      <option value="BM">Bermuda</option>
+                      <option value="BT">Bhutan</option>
+                      <option value="BO">Bolivia</option>
+                      <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                      <option value="BA">Bosnia and Herzegovina</option>
+                      <option value="BW">Botswana</option>
+                      <option value="BR">Brazil</option>
+                      <option value="IO">British Indian Ocean Territory</option>
+                      <option value="VG">British Virgin Islands</option>
+                      <option value="BN">Brunei</option>
+                      <option value="BG">Bulgaria</option>
+                      <option value="BF">Burkina Faso</option>
+                      <option value="MM">Burma</option>
+                      <option value="BI">Burundi</option>
+                      <option value="KH">Cambodia</option>
+                      <option value="CM">Cameroon</option>
+                      <option value="CV">Cape Verde</option>
+                      <option value="KY">Cayman Islands</option>
+                      <option value="CF">Central African Republic</option>
+                      <option value="TD">Chad</option>
+                      <option value="CL">Chile</option>
+                      <option value="CN">China</option>
+                      <option value="CX">Christmas Island</option>
+                      <option value="CC">Cocos (Keeling) Islands</option>
+                      <option value="CO">Colombia</option>
+                      <option value="KM">Comoros</option>
+                      <option value="CG">Congo</option>
+                      <option value="CD">Congo (Democratic Republic)</option>
+                      <option value="CK">Cook Islands</option>
+                      <option value="CR">Costa Rica</option>
+                      <option value="HR">Croatia</option>
+                      <option value="CU">Cuba</option>
+                      <option value="CW">Curaçao</option>
+                      <option value="CY">Cyprus</option>
+                      <option value="CZ">Czechia</option>
+                      <option value="DK">Denmark</option>
+                      <option value="DJ">Djibouti</option>
+                      <option value="DM">Dominica</option>
+                      <option value="DO">Dominican Republic</option>
+                      <option value="TL">East Timor</option>
+                      <option value="EC">Ecuador</option>
+                      <option value="EG">Egypt</option>
+                      <option value="SV">El Salvador</option>
+                      <option value="GQ">Equatorial Guinea</option>
+                      <option value="ER">Eritrea</option>
+                      <option value="EE">Estonia</option>
+                      <option value="SZ">Eswatini</option>
+                      <option value="ET">Ethiopia</option>
+                      <option value="FK">Falkland Islands</option>
+                      <option value="FO">Faroe Islands</option>
+                      <option value="FJ">Fiji</option>
+                      <option value="FI">Finland</option>
+                      <option value="FR">France</option>
+                      <option value="GF">French Guiana</option>
+                      <option value="PF">French Polynesia</option>
+                      <option value="GA">Gabon</option>
+                      <option value="GM">Gambia</option>
+                      <option value="GE">Georgia</option>
+                      <option value="DE">Germany</option>
+                      <option value="GH">Ghana</option>
+                      <option value="GI">Gibraltar</option>
+                      <option value="GR">Greece</option>
+                      <option value="GL">Greenland</option>
+                      <option value="GD">Grenada</option>
+                      <option value="GP">Guadeloupe</option>
+                      <option value="GU">Guam</option>
+                      <option value="GT">Guatemala</option>
+                      <option value="GG">Guernsey</option>
+                      <option value="GN">Guinea</option>
+                      <option value="GW">Guinea-Bissau</option>
+                      <option value="GY">Guyana</option>
+                      <option value="HT">Haiti</option>
+                      <option value="HN">Honduras</option>
+                      <option value="HK">Hong Kong</option>
+                      <option value="HU">Hungary</option>
+                      <option value="IS">Iceland</option>
+                      <option value="IN">India</option>
+                      <option value="ID">Indonesia</option>
+                      <option value="IR">Iran</option>
+                      <option value="IQ">Iraq</option>
+                      <option value="IE">Ireland</option>
+                      <option value="IM">Isle of Man</option>
+                      <option value="IL">Israel</option>
+                      <option value="IT">Italy</option>
+                      <option value="CI">Ivory Coast</option>
+                      <option value="JM">Jamaica</option>
+                      <option value="JP">Japan</option>
+                      <option value="JE">Jersey</option>
+                      <option value="JO">Jordan</option>
+                      <option value="KZ">Kazakhstan</option>
+                      <option value="KE">Kenya</option>
+                      <option value="KI">Kiribati</option>
+                      <option value="KP">Korea (North)</option>
+                      <option value="KR">Korea (South)</option>
+                      <option value="KW">Kuwait</option>
+                      <option value="KG">Kyrgyzstan</option>
+                      <option value="LA">Laos</option>
+                      <option value="LV">Latvia</option>
+                      <option value="LB">Lebanon</option>
+                      <option value="LS">Lesotho</option>
+                      <option value="LR">Liberia</option>
+                      <option value="LY">Libya</option>
+                      <option value="LI">Liechtenstein</option>
+                      <option value="LT">Lithuania</option>
+                      <option value="LU">Luxembourg</option>
+                      <option value="MO">Macao</option>
+                      <option value="MK">Macedonia</option>
+                      <option value="MG">Madagascar</option>
+                      <option value="MW">Malawi</option>
+                      <option value="MY">Malaysia</option>
+                      <option value="MV">Maldives</option>
+                      <option value="ML">Mali</option>
+                      <option value="MT">Malta</option>
+                      <option value="MH">Marshall Islands</option>
+                      <option value="MQ">Martinique</option>
+                      <option value="MR">Mauritania</option>
+                      <option value="MU">Mauritius</option>
+                      <option value="YT">Mayotte</option>
+                      <option value="MX">Mexico</option>
+                      <option value="FM">Micronesia</option>
+                      <option value="MD">Moldova</option>
+                      <option value="MC">Monaco</option>
+                      <option value="MN">Mongolia</option>
+                      <option value="ME">Montenegro</option>
+                      <option value="MS">Montserrat</option>
+                      <option value="MA">Morocco</option>
+                      <option value="MZ">Mozambique</option>
+                      <option value="NA">Namibia</option>
+                      <option value="NR">Nauru</option>
+                      <option value="NP">Nepal</option>
+                      <option value="NL">Netherlands</option>
+                      <option value="NC">New Caledonia</option>
+                      <option value="NI">Nicaragua</option>
+                      <option value="NE">Niger</option>
+                      <option value="NG">Nigeria</option>
+                      <option value="NU">Niue</option>
+                      <option value="NF">Norfolk Island</option>
+                      <option value="MP">Northern Mariana Islands</option>
+                      <option value="NO">Norway</option>
+                      <option value="OM">Oman</option>
+                      <option value="PK">Pakistan</option>
+                      <option value="PW">Palau</option>
+                      <option value="PA">Panama</option>
+                      <option value="PG">Papua New Guinea</option>
+                      <option value="PY">Paraguay</option>
+                      <option value="PE">Peru</option>
+                      <option value="PH">Philippines</option>
+                      <option value="PN">Pitcairn</option>
+                      <option value="PL">Poland</option>
+                      <option value="PT">Portugal</option>
+                      <option value="PR">Puerto Rico</option>
+                      <option value="QA">Qatar</option>
+                      <option value="RE">Réunion</option>
+                      <option value="RO">Romania</option>
+                      <option value="RU">Russia</option>
+                      <option value="RW">Rwanda</option>
+                      <option value="MF">Saint Martin (French)</option>
+                      <option value="WS">Samoa</option>
+                      <option value="SM">San Marino</option>
+                      <option value="ST">Sao Tome and Principe</option>
+                      <option value="SA">Saudi Arabia</option>
+                      <option value="SN">Senegal</option>
+                      <option value="RS">Serbia</option>
+                      <option value="SC">Seychelles</option>
+                      <option value="SL">Sierra Leone</option>
+                      <option value="SG">Singapore</option>
+                      <option value="SX">Sint Maarten (Dutch)</option>
+                      <option value="SK">Slovakia</option>
+                      <option value="SI">Slovenia</option>
+                      <option value="SB">Solomon Islands</option>
+                      <option value="SO">Somalia</option>
+                      <option value="ZA">South Africa</option>
+                      <option value="GS">South Georgia and the South Sandwich Islands</option>
+                      <option value="SS">South Sudan</option>
+                      <option value="ES">Spain</option>
+                      <option value="LK">Sri Lanka</option>
+                      <option value="BL">St Barthélemy</option>
+                      <option value="SH">St Helena, Ascension and Tristan da Cunha</option>
+                      <option value="KN">St Kitts and Nevis</option>
+                      <option value="LC">St Lucia</option>
+                      <option value="PM">St Pierre and Miquelon</option>
+                      <option value="VC">St Vincent</option>
+                      <option value="SD">Sudan</option>
+                      <option value="SR">Suriname</option>
+                      <option value="SJ">Svalbard and Jan Mayen</option>
+                      <option value="SE">Sweden</option>
+                      <option value="CH">Switzerland</option>
+                      <option value="SY">Syria</option>
+                      <option value="TW">Taiwan</option>
+                      <option value="TJ">Tajikistan</option>
+                      <option value="TZ">Tanzania</option>
+                      <option value="TH">Thailand</option>
+                      <option value="TG">Togo</option>
+                      <option value="TO">Tonga</option>
+                      <option value="TT">Trinidad and Tobago</option>
+                      <option value="TN">Tunisia</option>
+                      <option value="TR">Turkey</option>
+                      <option value="TM">Turkmenistan</option>
+                      <option value="TC">Turks and Caicos Islands</option>
+                      <option value="TV">Tuvalu</option>
+                      <option value="UG">Uganda</option>
+                      <option value="UA">Ukraine</option>
+                      <option value="AE">United Arab Emirates</option>
+                      <option value="VI">United States Virgin Islands</option>
+                      <option value="UY">Uruguay</option>
+                      <option value="UZ">Uzbekistan</option>
+                      <option value="VU">Vanuatu</option>
+                      <option value="VA">Vatican City</option>
+                      <option value="VE">Venezuela</option>
+                      <option value="VN">Vietnam</option>
+                      <option value="WF">Wallis and Futuna</option>
+                      <option value="YE">Yemen</option>
+                      <option value="ZM">Zambia</option>
+                      <option value="ZW">Zimbabwe</option>
+                    </select>
+                    <label for="country">Country</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div id="sotDiv" class="form-floating">
+                    <select id="sourceOfTruth" name="sourceOfTruth" class="form-select address-opt">
+                                            <option value="GNAF" class="sot-AU" selected="selected">Australian geo-coded addresses (GNAF)</option><option value="AUSOTS" class="sot-AU">All Australian addresses (AUSOTS)</option>
+                      <option value="AUPAF" class="sot-AU">Australian postal addresses (AUPAF)</option>
+                      <option value="GNAF" class="sot-AU" selected="selected">Australian geo-coded addresses (GNAF)</option>
+                      <option value="AUPOST" class="sot-AU">Parcel Locker Plus (AUPOST)</option>
+                      <option value="NZPAF" class="sot-NZ" >New Zealand post addresses (NZPAF)</option>
+                      <option value="NZAD" class="sot-NZ" >New Zealand Address Dataset (NZAD)</option>                         </select>
+                    <label for="sourceOfTruth">Source of Truth</label>
+                  </div>
+                </div>
+              </div>
+
+              <p />
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-check">
+                    <input id="groupAddresses" type="checkbox" class="form-check-input address-opt" />
+                    <label for="groupAddresses" class="form-check-label">Address grouping (valid for certain countries / data sources)</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-check">
+                    <input id="intlGeocode" type="checkbox" class="form-check-input address-opt" />
+                    <label for="intlGeocode" class="form-check-label">International geocoding</label>
+                  </div>
+                </div>
+
+              </div>
+               <div class="row">
+                <div class="col-md-6">
+                  <div class="form-check">
+                    <input id="userInferred" type="checkbox" class="form-check-input address-opt" />
+                    <label for="userInferred" class="form-check-label">Derived sub-premise</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-check">
+                    <input id="suppressLot" type="checkbox" class="form-check-input address-opt" checked="true"/>
+                    <label for="suppressLot" class="form-check-label">suppressLot</label>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <label> More Sources </label>
+                <div class="col-md-6">
+                  <div id="moreSources" class="form-floating">
+                    <select id="moreSource" name="moreSource" class="form-select address-opt">
+                      <option value="" class="sot-AU" selected="selected">None</option>
+                      <option value="AUSOTS" class="sot-AU">All Australian addresses (AUSOTS)</option>
+                      <option value="AUPAF" class="sot-AU">Australian postal addresses (AUPAF)</option>
+                      <option value="GNAF" class="sot-AU" >Australian geo-coded addresses (GNAF)</option>
+                      <option value="AUPOST" class="sot-AU" >Parcel Locker Plus (AUPOST)</option>
+                      <option value="NZPAF" class="sot-NZ" >New Zealand post addresses (NZPAF)</option>
+                      <option value="NZAD" class="sot-NZ" >New Zealand Address Dataset (NZAD)</option>                         </select>
+                    <label for="moreSource">More Sources</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-check">
+                    <input id="filtMoreSource" type="checkbox" class="form-check-input address-opt" />
+                    <label for="filtMoreSource" class="form-check-label">Parcel Lockers, Offices, Shops only</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- demo item -->
+    <div class="accordion-item visible" id="demo">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          Demo
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-floating">
+                <input id="address" name="address" type="text" class="form-control" autocomplete="off" />
+                <label for="address">Search by typing address</label>
+              </div>
+            </div>
+          </div>
+
+          <h6 style="display:none">Output</h6>
+
+          <div class="row" id="output" style="display:none">
+
+            <!--                 <div class="form-floating col-3">
+                  <input id="eid" name="eid" readonly="readonly" type="text" class="form-control"/>
+                  <label for="eid">EID</label>
+                </div>
+                <div class="form-floating col-3">
+                  <input id="id" name="id" readonly="readonly" type="text" class="form-control" />
+                  <label for="id">ID</label>
+                </div> -->
+            <div class="form-floating col-3">
+              <input id="postcode" name="postcode" readonly="readonly" class="form-control" type="text" />
+              <label for="postcode">Postcode</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="state" name="state" readonly="readonly" class="form-control" type="text" />
+              <label for="state">State</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="locality" name="locality" readonly="readonly" class="form-control" type="text" />
+              <label for="locality">Locality</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="townCity" name="townCity" readonly="readonly" class="form-control" type="text" />
+              <label for="townCity">Town/City</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="suburb" name="suburb" readonly="readonly" class="form-control" type="text" />
+              <label for="suburb">Suburb</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="city" name="city" readonly="readonly" class="form-control" type="text" />
+              <label for="city">City</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="province" name="province" readonly="readonly" class="form-control" type="text" />
+              <label for="province">Province</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="street" name="street" readonly="readonly" class="form-control" type="text" />
+              <label for="street">Street</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="streetNumber" name="streetNumber" readonly="readonly" class="form-control" type="text" />
+              <label for="streetNumber">Street Number</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="postal" name="postal" readonly="readonly" class="form-control" type="text" />
+              <label for="postal">Postal</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="buildingName" name="buildingName" readonly="readonly" class="form-control" type="text" />
+              <label for="buildingName">Building Name</label>
+            </div>
+            <div class="form-floating col-3">
+              <input id="subdwelling" name="subdwelling" readonly="readonly" class="form-control" type="text" />
+              <label for="subdwelling">Subdwelling</label>
+            </div>
+
+            <!--                 <div class="field">
+                  <label for="attributes">Attributes</label>
+                  <textarea id="attributes" name="attributes" readonly></textarea>
+                </div> -->
+
+          </div>
+
+          <p />
+          <div>
+            <h6 style="font-style:italic">Full response</h6>
+            <div class="card card-body">
+              <pre id="json"></pre>
+              <div id="error"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
